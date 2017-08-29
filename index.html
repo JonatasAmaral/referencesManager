@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <link rel="stylesheet" href="CDNs/cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <div>
+      <h1 id="projetcName">Project name</h1>
+      <p>References Manager</p>
+    </div>
+  </header>
+
+  <div id="page">
+    <input type="checkbox" id="filtersTrigger" name="filtersTrigger" data-pristine onchange="pristine.remove(this)" />
+    <aside id="filterPanel">
+      <div id="filter">
+        <button class="tag tag-big">image</button>
+        <button class="tag tag-big">animation</button>
+        <button class="tag tag-big">transition</button>
+      </div>
+
+      <br>
+      <button id="addTag" type="button" name="addTag" title="add a tag to filter" onclick="addTag();"><i class="fa fa-plus"></i></button>
+    </aside>
+    <label class="tagsIcon" for="filtersTrigger"><i class="fa fa-tags"></i></label>
+
+    <div id="references">
+      <!-- Ghost content for testing purposes -->
+      <div class="reference">
+        <img src="content/img/imageGrid-nameOnHover.gif" alt="imageGrid-nameOnHover.gif" data-tags="hover image" />
+        <div class="referenceInfo">
+          <h3 class="tittle">Lorem Ipsun</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident dicta nam vitae earum sit voluptatem quae. Officiis.</p>
+          <div class="referenceTags">
+            <i class="tagsIcon fa fa-tags"></i>
+            <div class="tagsList">
+              <button class="tag tag-small">image</button>
+              <button class="tag tag-small">transition</button>
+              <button class="tag tag-small">transition</button>
+              <button class="tag tag-small">texture</button>
+              <button class="tag tag-small">transition</button>
+              <button class="tag tag-small">texture</button>
+              <button class="tag tag-small">image</button>
+              <button class="tag tag-small">texture</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reference">
+        <img src="content/img/imageGrid-changeDisplayedImageAsMove.gif" alt="imageGrid-changeDisplayedImageAsMove.gif" data-tags="hover image animation" />
+        <div class="referenceInfo">
+          <h3 class="tittle">Lorem Ipsun</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident dicta nam vitae earum sit voluptatem quae. Officiis.</p>
+          <div class="referenceTags">
+            <i class="tagsIcon fa fa-tags"></i>
+            <div class="tagsList">
+              <button class="tag tag-small">transition</button>
+              <button class="tag tag-small">texture</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <video class="reference" controls src="content/video/capture.mp4" />
+      </video>
+      <img src="content/img/imageGrid-nameOnHover2.gif" alt="imageGrid-nameOnHover2.gif" data-tags="hover image" />
+      <img class="reference" src="content/img/header-deslocado.png" alt="header-deslocado.png" data-tags="header" />
+
+      <!-- </ Ghost content for testing purposes -->
+    </div>
+  </div>
+  <script type="text/javascript">
+    var pristine = function (input) {
+      var target = input || this;
+      return target.hasAttribute("data-pristine");
+    };
+    pristine.remove = function (input) {
+      var target = input || this;
+
+      console.log("input:" + input, "this:" + this);
+      target.removeAttribute("data-pristine");
+    };
+    pristine.makePristine = function (input) {
+      var target = input || this;
+      target.setAttribute("data-pristine", "");
+    };
+  </script>
+</body>
+</html>

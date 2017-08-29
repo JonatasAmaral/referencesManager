@@ -1,0 +1,18 @@
+@import "fonts.css";
+
+:root{
+  /* RGB */
+  --color-darken: rgba(31, 54, 61, 1);
+  --color-darken-0_7: rgba(31, 54, 61, 0.7);
+  --color-dark: rgba(64, 122, 140, 1);
+  --color-base: rgba(111, 154, 168, 1);
+  --color-base-0_8: rgba(111, 154, 168, 0.8);
+  --color-light: rgba(158, 185, 193, 1);
+  --color-lighten: rgba(195, 217, 224, 1);
+
+  /* Fonts */
+	--projectFont: "Century Gothic", Arial, Helvetica, sans-serif;
+	--subProjectFont: Broadway, Impact, serif;
+	--tagsFont: Consolas, "Courie New", monospace;
+	--textFont: Roboto, Helvetica, sans-serif;
+}

@@ -1,0 +1,6 @@
+layout
+
+CDNs
+
+content/*/*.*
+!content/*/_example*.*

@@ -1,0 +1,134 @@
+/* Century Gothic */
+@font-face {
+    font-family: "Century Gothic"; /*a name to be used later*/
+    src: url('../fonts/Century Gothic-Regular.ttf') format('truetype'); /*URL to font*/
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Century Gothic";
+    src: url('../fonts/Century Gothic-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Century Gothic";
+    src: url('../fonts/Century Gothic-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Century Gothic";
+    src: url('../fonts/Century Gothic-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* Broadway */
+@font-face {
+    font-family: Broadway; /*a name to be used later*/
+    src: url('../fonts/Broadway.ttf') format('truetype'); /*URL to font*/
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Broadway */
+@font-face {
+    font-family: Consolas; /*a name to be used later*/
+    src: url('../fonts/Consolas-Regular.ttf') format('truetype'); /*URL to font*/
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: Consolas;
+    src: url('../fonts/Consolas-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: Consolas;
+    src: url('../fonts/Consolas-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: Consolas;
+    src: url('../fonts/Consolas-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+/*Roboto*/
+
+@font-face {
+    font-family: Roboto; /*a name to be used later*/
+    src: url('../fonts/Roboto-Thin.ttf') format('truetype'); /*URL to font*/
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: Roboto; /*a name to be used later*/
+    src: url('../fonts/Roboto-ThinItalic.ttf') format('truetype'); /*URL to font*/
+    font-weight: 100;
+    font-style: italic;
+}
+@font-face {
+    font-family: Roboto; /*a name to be used later*/
+    src: url('../fonts/Roboto-Light.ttf') format('truetype'); /*URL to font*/
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: Roboto; /*a name to be used later*/
+    src: url('../fonts/Roboto-LightItalic.ttf') format('truetype'); /*URL to font*/
+    font-weight: 300;
+    font-style: italic;
+}
+@font-face {
+    font-family: Roboto; /*a name to be used later*/
+    src: url('../fonts/Roboto-Regular.ttf') format('truetype'); /*URL to font*/
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: Roboto; /*a name to be used later*/
+    src: url('../fonts/Roboto-Italic.ttf') format('truetype'); /*URL to font*/
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: Roboto; /*a name to be used later*/
+    src: url('../fonts/Roboto-Medium.ttf') format('truetype'); /*URL to font*/
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: Roboto; /*a name to be used later*/
+    src: url('../fonts/Roboto-MediumItalic.ttf') format('truetype'); /*URL to font*/
+    font-weight: 500;
+    font-style: italic;
+}
+@font-face {
+    font-family: Roboto; /*a name to be used later*/
+    src: url('../fonts/Roboto-Bold.ttf') format('truetype'); /*URL to font*/
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: MyRoboto; /*a name to be used later*/
+    src: url('../fonts/Roboto-BoldItalic.ttf') format('truetype'); /*URL to font*/
+    font-weight: 700;
+    font-style: italic;
+}
+@font-face {
+    font-family: MyRoboto; /*a name to be used later*/
+    src: url('../fonts/Roboto-Black.ttf') format('truetype'); /*URL to font*/
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: MyRoboto; /*a name to be used later*/
+    src: url('../fonts/Roboto-BlackItalic.ttf') format('truetype'); /*URL to font*/
+    font-weight: 900;
+    font-style: italic;
+}
