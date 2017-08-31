@@ -6,7 +6,6 @@
   margin: 0;
   border: none;
   outline: none;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 html, body {
@@ -15,19 +14,16 @@ html, body {
 
 /*scroll bar */
 /*::-webkit-scrollbar {
-  max-width: 6px;
-  max-height: 6px;
+  width: 8px;
+  height: 8px;
 }
-
 ::-webkit-scrollbar-track {
   border-radius: 6px;
 }
-
 ::-webkit-scrollbar-thumb {
   background: rgba(0,0,0,0.3);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0,0,0,0.5);
 }
 ::-webkit-scrollbar-thumb:window-inactive {
 	background: rgba(0,0,0,0.1);
@@ -57,7 +53,6 @@ header div > * {
   color: white;
   text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.5);
 }
-
 header #projetcName {
   font-family: var(--projectFont);
   font-weight: bold;
@@ -70,27 +65,49 @@ header p {
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
 }
 
+/* universal Tags style */
+.tag {
+  font-family: var(--tagsFont);
+  font-size: 1.25em;
+  background: var(--color-darken-0_7);
+  color: white;
+  padding: 8px;
+  margin: 5px 8px;
+  border-radius: 10px;
+  text-align: center;
+  transition: background 0.5s ease;
+}
+.tag:hover {
+  background: var(--color-darken);
+}
+.tag.tag-small {
+  font-size: 0.9em;
+  padding: 4px 5px;
+  margin: 4px 5px;
+  border-radius: 6px;
+}
+
 /* Filter aside style */
 #filtersTrigger {
   display: none;
 }
-#filtersTrigger:checked + #filterPanel {
-  left: 0;
-}
-
 #filterPanel {
   position: fixed;
+  width: 80%;
+  height: calc(100vh - 80px);
   left: calc(-80% - 6px);
   background: var(--color-base-0_8);
   box-shadow: 3px 0px 2px rgba(0, 0, 0, 0.2);
   padding: 10px 15px;
-  width: 80%;
-  height: calc(100vh - 80px);
   z-index: 1;
 
   transition: left 0.5s ease-in-out;
   transition-delay: 0.10s;
 }
+#filtersTrigger:checked + #filterPanel {
+  left: 0;
+}
+
 #filter {
   padding: 10px 4px;
   max-height: 40%;
@@ -129,31 +146,6 @@ header p {
   display: flex;
   /*flex-wrap: wrap;*/
   overflow: auto;
-}
-.tag {
-  display: inline-block;
-  font-family: var(--tagsFont);
-  font-size: 1.25em;
-  background: var(--color-darken-0_7);
-  color: white;
-  padding: 8px;
-  margin: 5px 8px;
-  border-radius: 10px;
-  text-align: center;
-  /*flex-grow: 1;*/
-}
-.tag.tag-small {
-  font-size: 0.9em;
-  padding: 4px 5px;
-  margin: 4px 5px;
-  /*border-radius: 8px;*/
-  transition: transform 0.2s linear;
-}
-.tag:hover {
-  background: var(--color-darken);
-}
-.tag.tag-small:hover {
-  transform: translateY(-2px);
 }
 
 /* Filter button style */
@@ -198,6 +190,7 @@ label[for="filtersTrigger"]:hover {
   height: calc(100vh - 80px);
   overflow: auto;
 }
+
   /* -- reference's information style --  */
 #references div.reference {
   padding-bottom: 20px;
@@ -243,19 +236,6 @@ div.reference:not(:hover) > .referenceInfo{
 }
 
 .referenceTags > .fa {
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 0 5px;
-background: var(--color-base);
-color: #333;
-border-bottom-left-radius: 7px;
-border-top-left-radius: 7px;
-padding: 10px;
-}
-/*#references .referenceTags:before {
-  font-family: FontAwesome;
-  content: "\f02c";
   display: flex;
   align-items: center;
   justify-content: center;
@@ -265,7 +245,7 @@ padding: 10px;
   border-bottom-left-radius: 7px;
   border-top-left-radius: 7px;
   padding: 10px;
-}*/
+}
 .referenceTags .tagsList {
   flex-grow: 1;
   background: #ccc;
@@ -291,6 +271,12 @@ padding: 10px;
   opacity: 0;
 }
 /* </fade tags out of box*/
+.referenceTags .tag.tag-small {
+  transition: transform 0.2s linear;
+}
+.referenceTags .tag.tag-small:hover {
+  transform: translateY(-2px);
+}
 .referenceTags .tag:last-child::after { /* fix "right padding" on scrollable tags list */
   content: ".";
   position: absolute;
@@ -367,13 +353,4 @@ padding: 10px;
   /*body {
     background: blue;
   }*/
-}
-
-
-/* # "demi-mobile" devices # */
-
-@media (min-width: 650px) {
-  body {
-    background: red;
-  }
 }

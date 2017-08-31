@@ -1,6 +1,6 @@
-port=1000
+port=8080
 
-echo "port number [default: 1000]:"
+echo "port number [default: 8080]:"
 read -t 10 userPort
 
 if echo $userPort$1 | grep -vsq "^[0-9]*$"; then
