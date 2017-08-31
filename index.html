@@ -31,6 +31,7 @@
     <label class="tagsIcon" for="filtersTrigger"><i class="fa fa-tags"></i></label>
 
     <div id="references">
+
       <!-- Ghost content for testing purposes -->
       <div class="reference">
         <img src="content/img/imageGrid-nameOnHover.gif" alt="imageGrid-nameOnHover.gif" data-tags="hover image" />
@@ -72,24 +73,23 @@
       </video>
       <img src="content/img/imageGrid-nameOnHover2.gif" alt="imageGrid-nameOnHover2.gif" data-tags="hover image" />
       <img class="reference" src="content/img/header-deslocado.png" alt="header-deslocado.png" data-tags="header" />
-
       <!-- </ Ghost content for testing purposes -->
+
     </div>
   </div>
   <script type="text/javascript">
     var pristine = function (input) {
-      var target = input || this;
-      return target.hasAttribute("data-pristine");
+      return input.hasAttribute("data-pristine");
     };
     pristine.remove = function (input) {
-      var target = input || this;
-
-      console.log("input:" + input, "this:" + this);
-      target.removeAttribute("data-pristine");
+      if (pristine(input)) {
+        input.removeAttribute("data-pristine");
+      }
     };
     pristine.makePristine = function (input) {
-      var target = input || this;
-      target.setAttribute("data-pristine", "");
+      if ( !pristine(input)) {
+        input.setAttribute("data-pristine", "");
+      }
     };
   </script>
 </body>
