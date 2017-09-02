@@ -354,3 +354,69 @@ div.reference:not(:hover) > .referenceInfo{
     background: blue;
   }*/
 }
+
+
+/* # "demi-mobile" devices # */
+
+@media (min-width: 600px) {
+  #page {
+    display: grid;
+    grid-template-columns: 35% 1fr;
+  }
+  #filterPanel {
+    background: var(--color-base);
+    position: initial;
+    width: 100%;
+    animation-play-state: paused;
+  }
+  label[for="filtersTrigger"] {
+    display: none;
+  }
+}
+@media (min-width: 1000px) {
+  #page {
+    grid-template-columns: 25% auto;
+  }
+  #references {
+    display: grid;
+    grid-template-columns: repeat(2, calc(50% - 10px));
+    grid-gap: 20px;
+  }
+}
+@media (min-width: 1400px) {
+  #page {
+    grid-template-columns: 20% auto;
+  }
+  #references {
+    grid-template-columns: repeat(3, calc(33.3333% - 13.3333px ));
+    grid-gap: 20px;
+  }
+}
+@media (min-width: 2000px) {
+  #page {
+    grid-template-columns: 17% auto;
+  }
+  #references {
+    grid-template-columns: repeat(4, calc(25% - 15px ));
+    grid-gap: 20px;
+  }
+}
+@media (min-width: 2300px) {
+  body {
+    background: linear-gradient(to right, var(--color-base) 45%, white 55%)
+  }
+  #page {
+    background: white;
+    grid-template: 15% 1fr min-max(50%-75%);
+    grid-template-areas: "sideBar gap content";
+    max-width: 2300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #filterPanel {
+    grid-area: "sideBar"
+  }
+  #references {
+      grid-area: "content"
+  }
+}
