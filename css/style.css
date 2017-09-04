@@ -42,6 +42,8 @@ header {
   display: flex;
   flex-wrap: wrap;
   z-index: 2;
+
+  transition: margin-top 1s ease-in-out;
 }
 header div {
   margin: auto;
@@ -358,7 +360,7 @@ div.reference:not(:hover) > .referenceInfo{
 
 /* # "demi-mobile" devices # */
 
-@media (min-width: 600px) {
+@media (min-width: 650px) {
   #page {
     display: grid;
     grid-template-columns: 35% 1fr;
@@ -419,4 +421,16 @@ div.reference:not(:hover) > .referenceInfo{
   #references {
       grid-area: "content"
   }
+}
+@media (orientation: landscape) and (max-height: 500px) {
+  header {
+    margin-top: -80px;
+  }
+  #filterPanel, #references {
+    height: 100vh;
+  }
+}
+@media (display-mode: fullscreen) {
+  body {
+    background: purple;
 }
