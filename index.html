@@ -5,16 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <!-- Chrome, Firefox OS and Opera -->
-  <meta name="theme-color" content="#6f9aa8">
+  <meta name="theme-color" content="#407a8c">
   <!-- Windows Phone -->
-  <meta name="msapplication-navbutton-color" content="#6f9aa8">
+  <meta name="msapplication-navbutton-color" content="#407a8c">
   <!-- iOS Safari -->
-  <meta name="apple-mobile-web-app-status-bar-style" content="#6f9aa8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#407a8c">
   <title>Document</title>
   <link rel="stylesheet" href="CDNs/cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <div id="modal" style="display:none">
+    <i class="fa fa-close"></i>
+    <img src="content/img/imageGrid-changeDisplayedImageAsMove.gif" alt=""/>
+  </div>
   <header>
     <div>
       <h1 id="projetcName">Project name</h1>
@@ -32,73 +36,63 @@
         <button class="tag tag-big">transition</button>
         <!-- </ Ghost content for testing purposes -->
       </div>
-
-      <br>
-      <button id="addTag" type="button" name="addTag" title="add a tag to filter" onclick="addTag();"><i class="fa fa-plus"></i></button>
     </aside>
     <label class="tagsIcon" for="filtersTrigger"><i class="fa fa-tags"></i></label>
 
     <div id="references">
+      <!-- BUG: On layout with more than one collum, references are not respecting margin of single images (those that are not in a 'div.reference' structure) above it, overlaping row above it if no reference in it's row is wrapped proper-->
 
       <!-- Ghost content for testing purposes -->
-      <div class="reference">
-        <img src="content/img/imageGrid-nameOnHover.gif" alt="imageGrid-nameOnHover.gif" data-tags="hover image" />
-        <div class="referenceInfo">
-          <h3 class="tittle">Lorem Ipsun</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident dicta nam vitae earum sit voluptatem quae. Officiis.</p>
-          <div class="referenceTags">
-            <i class="tagsIcon fa fa-tags"></i>
-            <div class="tagsList">
-              <button class="tag tag-small">image</button>
-              <button class="tag tag-small">transition</button>
-              <button class="tag tag-small">transition</button>
-              <button class="tag tag-small">texture</button>
-              <button class="tag tag-small">transition</button>
-              <button class="tag tag-small">texture</button>
-              <button class="tag tag-small">image</button>
-              <button class="tag tag-small">texture</button>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="reference">
-        <img src="content/img/imageGrid-changeDisplayedImageAsMove.gif" alt="imageGrid-changeDisplayedImageAsMove.gif" data-tags="hover image animation" />
-        <div class="referenceInfo">
-          <h3 class="tittle">Lorem Ipsun</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident dicta nam vitae earum sit voluptatem quae. Officiis.</p>
-          <div class="referenceTags">
-            <i class="tagsIcon fa fa-tags"></i>
-            <div class="tagsList">
-              <button class="tag tag-small">transition</button>
-              <button class="tag tag-small">texture</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <video class="reference" controls src="content/video/capture.mp4" />
+      <video class="reference" controls src="content/video/capture.mp4" data-tags="hover, image"/>
       </video>
-      <img src="content/img/imageGrid-nameOnHover2.gif" alt="imageGrid-nameOnHover2.gif" data-tags="hover image" />
+      <div class="reference">
+        <img src="content/img/imageGrid-nameOnHover.gif" alt="imageGrid-nameOnHover.gif" data-tags="hover, image" />
+        <div class="referenceInfo">
+          <h3 class="title">Lorem Ipsun</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident dicta nam vitae earum sit voluptatem quae. Officiis.</p>
+          <div class="referenceTags">
+            <i class="tagsIcon fa fa-tags"></i>
+            <div class="tagsList">
+              <button class="tag tag-small">image</button>
+              <button class="tag tag-small">transition</button>
+              <button class="tag tag-small">transition</button>
+              <button class="tag tag-small">texture</button>
+              <button class="tag tag-small">transition</button>
+              <button class="tag tag-small">texture</button>
+              <button class="tag tag-small">image</button>
+              <button class="tag tag-small">texture</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reference">
+        <img src="content/img/imageGrid-changeDisplayedImageAsMove.gif" alt="imageGrid-changeDisplayedImageAsMove.gif" data-tags="hover, image, animation" data-description="some image"/>
+        <div class="referenceInfo">
+          <h3 class="title">Lorem Ipsun</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident dicta nam vitae earum sit voluptatem quae. Officiis.</p>
+          <div class="referenceTags">
+            <i class="tagsIcon fa fa-tags"></i>
+            <div class="tagsList">
+              <button class="tag tag-small">transition</button>
+              <button class="tag tag-small">texture</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img src="content/img/imageGrid-nameOnHover.gif" alt="imageGrid-nameOnHover.gif" data-tags="hover, image" />
+      <img src="content/img/imageGrid-changeDisplayedImageAsMove.gif" alt="imageGrid-changeDisplayedImageAsMove.gif" data-tags="hover, image, animation" data-description="some image"/>
+      <img src="content/img/imageGrid-nameOnHover2.gif" alt="imageGrid-nameOnHover2.gif" data-tags="hover, image" />
       <img class="reference" src="content/img/header-deslocado.png" alt="header-deslocado.png" data-tags="header" />
+      <img src="content/img/imageGrid-changeDisplayedImageAsMove.gif" alt="imageGrid-changeDisplayedImageAsMove.gif" data-tags="hover, image, animation" data-description="some image" />
+      <img class="reference" src="content/img/header-deslocado_2.png" alt="header-deslocado.png" data-tags="header" />
+      <img src="content/img/imageGrid-changeDisplayedImageAsMove.gif" alt="imageGrid-changeDisplayedImageAsMove.gif" data-tags="hover, image, animation" data-description="some image" />
       <!-- </ Ghost content for testing purposes -->
 
     </div>
   </div>
-  <script type="text/javascript">
-    var pristine = function (input) {
-      return input.hasAttribute("data-pristine");
-    };
-    pristine.remove = function (input) {
-      if (pristine(input)) {
-        input.removeAttribute("data-pristine");
-      }
-    };
-    pristine.makePristine = function (input) {
-      if ( !pristine(input)) {
-        input.setAttribute("data-pristine", "");
-      }
-    };
-  </script>
+
+  <!-- <script type="text/javascript" src="CDNs\ajax.googleapis.com\ajax\libs\jquery\3.2.1\jquery.min.js"></script> -->
+  <script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-var swipe = function (actions, target) {
+var swipe = function (target, actions) {
 
   if (actions === null) {
     /* do nothing */
@@ -10,7 +10,7 @@ var swipe = function (actions, target) {
       \t swipeToUp    : function () {},
       \t swipeToDown  : function () {}
     }
-    or a "null" value to sisable it`);
+    or a "null" value to disable it`);
     return null;
   }
 

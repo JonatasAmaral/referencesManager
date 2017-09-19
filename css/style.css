@@ -1,21 +1,24 @@
 @import "variables.css";
 
 /* Normalize elements (simple way) */
-* {
+html,body,h1,h2,h3,h4,h5,h6,div,aside,p,a,i,span,button {
   padding: 0;
   margin: 0;
   border: none;
   outline: none;
   box-sizing: border-box;
 }
+::-moz-focus-inner {
+  border: 0;
+}
 html, body {
   overflow: hidden;
 }
 
 /*scroll bar */
-/*::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
   border-radius: 6px;
@@ -27,7 +30,7 @@ html, body {
 }
 ::-webkit-scrollbar-thumb:window-inactive {
 	background: rgba(0,0,0,0.1);
-}*/
+}
 
 /*::selection {
   background: var(--color-lighten);
@@ -47,10 +50,6 @@ header {
 }
 header div {
   margin: auto;
-  text-align: center;
-}
-header div > * {
-  width: 100%;
   text-align: center;
   color: white;
   text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.5);
@@ -74,10 +73,12 @@ header p {
   background: var(--color-darken-0_7);
   color: white;
   padding: 8px;
-  margin: 5px 8px;
+  margin: 4px 5px 4px 0;
   border-radius: 10px;
   text-align: center;
   transition: background 0.5s ease;
+  user-select: none;
+  cursor: default;
 }
 .tag:hover {
   background: var(--color-darken);
@@ -111,7 +112,7 @@ header p {
 }
 
 #filter {
-  padding: 10px 4px;
+  padding: 10px;
   max-height: 40%;
   overflow: auto;
   background: rgba(225,225,225,1);
@@ -119,35 +120,6 @@ header p {
 }
 #filter .tag{
   box-shadow: 2px 3px 2px rgba(0,0,0,0.2), inset -1px -2px 3px rgba(0,0,0,0.3), inset 2px 2px 2px rgba(255,255,255,0.2);
-}
-#addTag {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  margin-top: 10px;
-  background: #bbb;
-  color: #333;
-  font-size: 1.4em;
-  border-radius: 5px;
-  box-shadow: inset -1px -2px 3px rgba(0,0,0,0.1),  inset 2px 3px 5px rgba(255,255,255,0.3);
-  text-shadow: 1px 2px 5px rgba(0,0,0,0.5);
-}
-#addTag:hover, #addTag:focus {
-  background: #ccc;
-}
-#addTag:active {
-  background: #999;
-  color: #222;
-  box-shadow: inset 2px 3px 3px rgba(0,0,0,0.1), inset -1px -2px 5px rgba(255,255,255,0.3);
-  text-shadow: none;
-}
-
-.tagsList {
-  display: flex;
-  /*flex-wrap: wrap;*/
-  overflow: auto;
 }
 
 /* Filter button style */
@@ -192,40 +164,40 @@ label[for="filtersTrigger"]:hover {
   height: calc(100vh - 80px);
   overflow: auto;
 }
-
   /* -- reference's information style --  */
-#references div.reference {
-  padding-bottom: 20px;
-  border-bottom: 2px solid var(--color-darken);
-  margin-bottom: 50px;
-}
 #references > .reference, #references > img, #references > video {
   margin-bottom: 50px;
 }
-#references > *:last-child {
+#references > :last-child {
   padding-bottom: 0;
-  border: 0;
   margin-bottom: 120px;
 }
 #references img, #references video{
+  display: block;
   width: 100%;
-  border: 1px solid var(--color-light) !important;
-  padding: 0 !important;
+  border: 1px solid var(--color-light);
+  padding: 0;
 }
 .referenceInfo {
-  padding: 5px 10px 10px;
+  padding: 5px 10px 20px;
   position: relative;
-}
-div.reference:not(:hover){
-  padding: 0 !important;
-  border: 0 !important;
-}
-div.reference:not(:hover) > .referenceInfo{
-  display: none;
-}
-.referenceInfo .tittle, .referenceInfo p {
   font-family: var(--textFont);
   text-align: center;
+}
+.referenceInfo::after{
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 80%;
+  bottom: -10px;
+  left: 10%;
+  background: var(--color-darken);
+}
+/*div.reference:hover{
+  background: #eee;
+}*/
+div.reference:not(:hover) > .referenceInfo{
+  display: none;
 }
 .referenceInfo p {
   margin-top: 10px;
@@ -237,18 +209,18 @@ div.reference:not(:hover) > .referenceInfo{
   display: flex;
 }
 
-.referenceTags > .fa {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.referenceTags > .tagsIcon {
+  /*background: none;*/
   padding: 0 5px;
-  background: var(--color-base);
-  color: #333;
   border-bottom-left-radius: 7px;
   border-top-left-radius: 7px;
   padding: 10px;
 }
 .referenceTags .tagsList {
+  display: flex;
+  /*flex-wrap: wrap;*/
+  overflow: auto;
+
   flex-grow: 1;
   background: #ccc;
   padding: 5px 10px;
@@ -287,6 +259,7 @@ div.reference:not(:hover) > .referenceInfo{
 }
 
 /* bounce animation for tags menu */
+/* TODO: substitute bounce animation to a great transition timing function */
 @keyframes bounce-in {
   0% {
     transform: translateX(0);
@@ -351,78 +324,9 @@ div.reference:not(:hover) > .referenceInfo{
   animation-play-state: paused !important;
 }
 /* </ bounce animation for tags menu */
-@supports (display: inline-grid) {
-  /*body {
-    background: blue;
-  }*/
-}
 
 
-/* # "demi-mobile" devices # */
-
-@media (min-width: 650px) {
-  #page {
-    display: grid;
-    grid-template-columns: 35% 1fr;
-  }
-  #filterPanel {
-    background: var(--color-base);
-    position: initial;
-    width: 100%;
-    animation-play-state: paused;
-  }
-  label[for="filtersTrigger"] {
-    display: none;
-  }
-}
-@media (min-width: 1000px) {
-  #page {
-    grid-template-columns: 25% auto;
-  }
-  #references {
-    display: grid;
-    grid-template-columns: repeat(2, calc(50% - 10px));
-    grid-gap: 20px;
-  }
-}
-@media (min-width: 1400px) {
-  #page {
-    grid-template-columns: 20% auto;
-  }
-  #references {
-    grid-template-columns: repeat(3, calc(33.3333% - 13.3333px ));
-    grid-gap: 20px;
-  }
-}
-@media (min-width: 2000px) {
-  #page {
-    grid-template-columns: 17% auto;
-  }
-  #references {
-    grid-template-columns: repeat(4, calc(25% - 15px ));
-    grid-gap: 20px;
-  }
-}
-@media (min-width: 2300px) {
-  body {
-    background: linear-gradient(to right, var(--color-base) 45%, white 55%)
-  }
-  #page {
-    background: white;
-    grid-template: 15% 1fr min-max(50%-75%);
-    grid-template-areas: "sideBar gap content";
-    max-width: 2300px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  #filterPanel {
-    grid-area: "sideBar"
-  }
-  #references {
-      grid-area: "content"
-  }
-}
-@media (orientation: landscape) and (max-height: 500px) {
+@media (max-height:500px) {
   header {
     margin-top: -80px;
   }
@@ -430,7 +334,173 @@ div.reference:not(:hover) > .referenceInfo{
     height: 100vh;
   }
 }
-@media (display-mode: fullscreen) {
+
+#references div.reference:last-child .referenceInfo::after{
+  display: none;
+}
+
+
+/* suport greater devices */
+@media (min-width: 650px) {
+  #page {
+    display: flex;
+    flex-direction: row;
+  }
+  #filterPanel {
+    display: block;
+    position: initial;
+    background: var(--color-base);
+    animation-play-state: paused;
+    box-shadow: none;
+    flex: 0 1 40%;
+
+    max-width: 300px;
+    transition: max-width 1s ease;
+  }
+  label[for="filtersTrigger"] {
+    display: none;
+  }
+  #references {
+    flex: 1 1 60%;
+  }
+  #references > :last-child {
+    margin-bottom: 40px
+  }
+}
+@media (min-width: 1000px) {
+  @supports not (display:grid) {
+    #filterPanel {
+      max-width: 400px;
+    }
+  }
+  #references {
+    display: grid;
+    grid-template-columns: repeat(2, calc(calc(100% / 2) - calc(20px / 2)) );
+    grid-column-gap: 20px;
+  }
+  #references .reference > * {
+    width: 100%;
+  }
+  #references div.reference:nth-last-child(-n+2) .referenceInfo::after{
+    display: none;
+  }
+}
+@media (min-width: 1400px) {
+  #filterPanel {
+    max-width: 400px;
+  }
+  #references {
+    grid-template-columns: repeat(3, calc(calc(100% / 3) - calc(20px / 3)) );
+  }
+}
+@media (min-width: 2000px) {
+  #references {
+    grid-template-columns: repeat(4, calc(calc(100% / 4) - calc(40px / 4)) );
+    grid-column-gap: 40px;
+  }
+}
+@media (min-width: 2300px) {
   body {
-    background: purple;
+    background: linear-gradient(to right, var(--color-base) 45%, white 55%)
+  }
+  #filterPanel {
+    max-width: 500px;
+  }
+  #page {
+    justify-content: center;
+  }
+  #references {
+    background: white;
+  }
+}
+
+#modal {
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  z-index: 3;
+  animation: apear 0.5s ease-out
+}
+/*@media (max-width: 650px) {
+  #modal {
+    padding: 20px;
+  }
+}*/
+#modal img{
+  display: block;
+  margin: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+#modal i {
+  font-weight: lighter;
+  position: fixed;
+  font-size: 1.6em;
+  color: #ccc;
+  cursor: pointer;
+  right: 20px;
+}
+#modal i:hover {
+  font-weight: bold;
+  color: #eee
+}
+@keyframes apear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* suport sevices not compatibles with CSS variables */
+@supports not ( color: var(--color-light)) {
+  /*::selection {
+    background: rgba(195, 217, 224, 1);
+  }*/
+  header {
+    background: rgba(64, 122, 140, 1);
+  }
+  header #projetcName {
+    font-family: "Century Gothic", Arial, Helvetica, sans-serif;
+  }
+  header p {
+    font-family: Broadway, Impact, serif;
+  }
+  .tag {
+    font-family: Consolas, "Courie New", monospace;;
+    background: rgba(31, 54, 61, 0.7);
+  }
+  .tag:hover {
+    background: rgba(31, 54, 61, 1);
+  }
+  #filterPanel {
+    background: rgba(111, 154, 168, 0.8);
+  }
+  .tagsIcon {
+    background: rgba(111, 154, 168, 1);
+  }
+  #filtersTrigger:checked + #filterPanel + label[for="filtersTrigger"] {
+    background: rgba(64, 122, 140, 1);
+  }
+  label[for="filtersTrigger"]:hover {
+    background: rgba(31, 54, 61, 1) !important;
+  }
+  #references div.reference {
+    border-bottom-color: rgba(31, 54, 61, 1);
+  }
+  #references img, #references video{
+    border-color: rgba(158, 185, 193, 1) !important;
+  }
+  .referenceInfo .tittle, .referenceInfo p {
+    font-family: Roboto, Helvetica, sans-serif;
+  }
+  .referenceTags > .fa {
+    background: rgba(111, 154, 168, 1);
+  }
 }
