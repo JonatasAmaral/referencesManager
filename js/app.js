@@ -12,6 +12,59 @@ pristine.makePristine = function (input) {
   }
 }
 
+// get each image's tag
+function getImageTags(imgElement, wrappedIn) {
+  var imgTags = imgElement.getAttribute("data-tags").split(",");
+  imgTags.forEach(function(tag) {
+    tag = tag.trim();
+  })
+  wrappedIn = wrappedIn || false
+  if(wrappedIn) {
+    if ( typeof(wrappedIn) !== typeof("") ){
+      wrappedIn = "button";
+    }
+    var tagsWrapped = "";
+    for (let tag in imgTags) {
+      tagsWrapped += `
+      <${wrappedIn} class="tag tag-small">${imgTags[tag]}</${wrappedIn}>`
+    }
+    return tagsWrapped
+  } else {
+    return imgTags
+  }
+}
+// wrap single images in a proper HTML structure
+function warpImage(imgElement) {
+  var imgName = /(\w|-)+\.\w+$/.exec(imgElement.getAttribute("src"))[0];
+  var imgDescription = imgElement.getAttribute("data-description") || "";
+  var imgTags = getImageTags(imgElement, true);
+  var imgWarp = `
+    <div class="reference">
+      ${imgElement.outerHTML}
+      <div class="referenceInfo">
+        <h3 class="title">${imgName}</h3>
+        <p>${imgDescription}</p>
+        <div class="referenceTags">
+          <i class="tagsIcon fa fa-tags"></i>
+          <div class="tagsList">
+            ${imgTags}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  imgElement.outerHTML = imgWarp
+  return imgWarp
+}
+var looseImages = document.querySelectorAll("#references>img, #references>video");
+looseImages.forEach(function (img) {
+  img.classList.remove("reference");
+  if(img.className == "") {
+    img.removeAttribute("class");
+  }
+  warpImage(img);
+})
+
 // open clicked image on modal
 var modal = document.querySelector("#modal")
 var modalImg = modal.querySelector("img")
