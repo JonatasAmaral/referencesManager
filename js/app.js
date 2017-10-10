@@ -280,3 +280,9 @@ swipe( modal, {
     }
   }
 });
+
+// sroll tags list by click and move
+var tagsLists = document.querySelectorAll(".tagsList")
+tagsLists.forEach(function(tagsList) {
+  gradScroll(tagsList);
+})
