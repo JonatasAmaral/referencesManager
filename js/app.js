@@ -150,6 +150,43 @@ modal.onclick = function (e) {
   }
 }
 
+// edit project name in app.
+var projectName = document.querySelector("#projectName")
+var storedProjectName = localStorage.getItem("projectName");
+
+projectName.innerText = storedProjectName || projectName.innerText
+
+addMultiEventListeners(projectName, ["contextmenu","dblclick"], function (e) {
+  if (this.contentEditable !== true && this.contentEditable !== "true") {
+    e.preventDefault();
+    this.contentEditable = true;
+    document.querySelector("header").style.marginTop = 0;
+    this.focus();
+    this.innerText = this.innerText;
+  }
+})
+projectName.onkeydown = function (e) {
+  if(e.keyIdentifier=='Enter'||e.keyCode==13 || e.keyIdentifier=='Tab'||e.keyCode==9){
+    e.preventDefault();
+    projectName.contentEditable = false;
+    if(projectName.innerHTML=="!"||projectName.innerHTML==""){
+      projectName.innerHTML="Project name";
+      localStorage.removeItem("projectName");
+    }
+    return false;
+  };
+}
+projectName.onkeyup = function (e) {
+  let newName = projectName.innerHTML;
+  localStorage.setItem("projectName", newName);
+}
+window.addEventListener("click",function(e) {
+  if(e.target != projectName && projectName.contentEditable == "true"){
+    projectName.contentEditable = false;
+  }
+})
+// </ edit project name in app.
+
 // filter references
 // check if one tag list contain tags from other list
 var containTag = function (imageTags, filterTags) {
