@@ -28,6 +28,15 @@ var swipe = function (target, actions, includeChildren) {
     if (!includeChildren && target!=evt.target) {
       return null;
     }
+    for (element of evt.path) {
+      if (element.scrollWidth > 15 + parseInt(window.getComputedStyle(element).width)) {
+        return null;
+      }
+      if (element == document.body) {
+        break;
+      }
+    }
+
     xDown = evt.touches[0].clientX;
     yDown = evt.touches[0].clientY;
   };

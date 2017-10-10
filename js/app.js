@@ -247,7 +247,6 @@ enableRemoveFilterTags();
 // </ filter references
 
 // slide aside functionality
-// BUG: side bar is being swiped when scrolling through tags list
 // TODO: make the swipe "realtime"
 var swipeTarget = document.querySelector("#page");
 var swipeFilterOnMobile = function () {
