@@ -11,40 +11,57 @@ pristine.makePristine = function (input) {
     input.setAttribute("data-pristine", "");
   }
 }
+function addMultiEventListeners(target, events, func) {
+  if (typeof(events) == typeof("string")) {
+    events = [events];
+  }
+  for (eventQuery of events) {
+    target.addEventListener(eventQuery, func);
+  }
+}
 
 // get each image's tag
-function getImageTags(imgElement, wrappedIn) {
-  var imgTags = imgElement.getAttribute("data-tags").split(",");
-  imgTags.forEach(function(tag) {
-    tag = tag.trim();
-  })
-  wrappedIn = wrappedIn || false
-  if(wrappedIn) {
-    if ( typeof(wrappedIn) !== typeof("") ){
-      wrappedIn = "button";
+function getReferenceTags(referenceElement, wrappedIn) {
+  if(referenceElement){
+    var imgTags = referenceElement.getAttribute("data-tags") || "";
+    imgTags = imgTags.split(",")
+    for(var i = 0; i < imgTags.length; i++) {
+      imgTags[i] = imgTags[i].trim();
+      if (imgTags[i].length==0) {
+        imgTags.splice(i, 1);
+        i--;
+      }
     }
-    var tagsWrapped = "";
-    for (let tag in imgTags) {
-      tagsWrapped += `
-      <${wrappedIn} class="tag tag-small">${imgTags[tag]}</${wrappedIn}>`
+
+    wrappedIn = wrappedIn || false
+    if(wrappedIn) {
+      if ( typeof(wrappedIn) !== typeof("") ){
+        wrappedIn = "button";
+      }
+      var tagsWrapped = "";
+      for (tag of imgTags) {
+        tagsWrapped += `<${wrappedIn} class="tag tag-small">${tag}</${wrappedIn}>`
+      }
+      return tagsWrapped
+    } else {
+      return imgTags
     }
-    return tagsWrapped
   } else {
-    return imgTags
+    return null;
   }
 }
 // wrap single images in a proper HTML structure
-function warpImage(imgElement) {
-  var imgName = /(\w|-)+\.\w+$/.exec(imgElement.getAttribute("src"))[0];
-  var imgDescription = imgElement.getAttribute("data-description") || "";
-  var imgTags = getImageTags(imgElement, true);
+function warpReference(referenceElement) {
+  var imgName = /(\w|-)+\.\w+$/.exec(referenceElement.getAttribute("src"))[0];
+  var imgDescription = referenceElement.getAttribute("data-description") || "";
+  var imgTags = getReferenceTags(referenceElement, true);
   var imgWarp = `
     <div class="reference">
-      ${imgElement.outerHTML}
+      ${referenceElement.outerHTML}
       <div class="referenceInfo">
         <h3 class="title">${imgName}</h3>
         <p>${imgDescription}</p>
-        <div class="referenceTags">
+        <div class="referenceTags" ${imgTags.length==0? 'style="display:none"': ''}>
           <i class="tagsIcon fa fa-tags"></i>
           <div class="tagsList">
             ${imgTags}
@@ -53,7 +70,7 @@ function warpImage(imgElement) {
       </div>
     </div>
   `;
-  imgElement.outerHTML = imgWarp
+  referenceElement.outerHTML = imgWarp
   return imgWarp
 }
 var looseImages = document.querySelectorAll("#references>img, #references>video");
@@ -62,7 +79,7 @@ looseImages.forEach(function (img) {
   if(img.className == "") {
     img.removeAttribute("class");
   }
-  warpImage(img);
+  warpReference(img);
 })
 
 // open clicked image on modal
@@ -81,18 +98,21 @@ for(let i in images) {
     modal.style.display = "";
 
     closeModalButton.offsetFromImg = 10;
+    closeModalButton.positionate = function () {
 
-    /* align close button clossest possible (with some offset) to image's right-top corner */
-    closeModalButton.style.top =  (modalImg.offsetTop - closeModalButton.clientHeight) - closeModalButton.offsetFromImg + "px";
-    closeModalButton.style.right =  (modalImg.offsetLeft - closeModalButton.clientWidth) - closeModalButton.offsetFromImg + "px"
+      /* align close button clossest possible (with some offset) to image's right-top corner */
+      closeModalButton.style.top =  (modalImg.offsetTop - closeModalButton.clientHeight) - closeModalButton.offsetFromImg + "px";
+      closeModalButton.style.right =  (modalImg.offsetLeft - closeModalButton.clientWidth) - closeModalButton.offsetFromImg + "px"
 
-    if(parseInt(closeModalButton.style.top) < 20){
-      closeModalButton.style.top = "20px";
+      if(parseInt(closeModalButton.style.top) < 20){
+        closeModalButton.style.top = "20px";
+      }
+      if(parseInt(closeModalButton.style.right) < 20){
+        closeModalButton.style.right = "20px";
+      }
+      /* </ align close button */
     }
-    if(parseInt(closeModalButton.style.right) < 20){
-      closeModalButton.style.right = "20px";
-    }
-    /* </ align close button */
+    closeModalButton.positionate();
   }
 }
 modal.onclick = function (e) {
@@ -103,7 +123,7 @@ modal.onclick = function (e) {
 
 // slide aside functionality
 // BUG: side bar is being swiped when scrolling through tags list
-// TODO: make the swipe a "realtime" thing
+// TODO: make the swipe "realtime"
 var swipeTarget = document.querySelector("#page");
 var swipeFilterOnMobile = function () {
   swipe( swipeTarget, {
@@ -116,29 +136,16 @@ var swipeFilterOnMobile = function () {
         let checkbox = document.querySelector("#filtersTrigger");
         checkbox.checked = false;
       }
-    }
-  )
+    },
+  false);
 }
 swipeFilterOnMobile();
 window.onresize = function () {
-  if(window.width < 650) {
+  if(window.innerWidth < 650) {
     swipeFilterOnMobile();
   } else {
-    swipeTarget;
+    swipe.removeAll(swipeTarget);
   }
-}
 
-// edit project name in app. Prompt way
-var projetcName = document.querySelector("#projetcName")
-var storedProjectName = localStorage.getItem("projetcName");
-if(storedProjectName){projetcName.innerText = storedProjectName}
-projetcName.ondblclick = function () {
-  let newName = prompt(`Name of project ("!" to clear)`);
-  if(newName == "!") {
-    newName = "Project name";
-    localStorage.removeItem("projetcName");
-  } else {
-    localStorage.setItem("projetcName", newName);
-  }
-  this.innerHTML = newName;
+  closeModalButton.positionate();
 }

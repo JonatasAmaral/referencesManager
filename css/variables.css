@@ -1,7 +1,7 @@
 @import "fonts.css";
 
 :root{
-  /* RGB */
+  /* RGB colors */
   --color-darken: rgba(31, 54, 61, 1);
   --color-darken-0_7: rgba(31, 54, 61, 0.7);
   --color-dark: rgba(64, 122, 140, 1);

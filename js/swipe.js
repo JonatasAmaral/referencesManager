@@ -1,41 +1,43 @@
-var swipe = function (target, actions) {
-
+var swipe = function (target, actions, includeChildren) {
+  target =  target || document;
   if (actions === null) {
     /* do nothing */
     actions = {}
   } else if(!actions) {
     console.error(`swipe(actions, target) must have an action object with at least one function, folowing the sintax:\n\t{
-      \t wipeToRight : function () {},
-      \t wipeToLeft  : function () {},
+      \t wipeToRight  : function () {},
+      \t wipeToLeft   : function () {},
       \t swipeToUp    : function () {},
       \t swipeToDown  : function () {}
     }
-    or a "null" value to disable it`);
+    or a "null" value to disable all swipes (but not removing the event listeners already added)`);
     return null;
   }
-
+  includeChildren = includeChildren || true;
 
   actions.swipeToRight = actions.swipeToRight || function(){return null}
   actions.swipeToLeft = actions.swipeToLeft || function(){return null}
   actions.swipeToUp = actions.swipeToUp || function(){return null}
   actions.swipeToDown = actions.swipeToDown || function(){return null}
 
-  target =  target || document;
-
-  target.addEventListener('touchstart', handleTouchStart, false);
-  target.addEventListener('touchmove', handleTouchMove, false);
-
   var xDown = null;
   var yDown = null;
 
-  function handleTouchStart(evt) {
+  target.handleTouchStart = function (evt) {
+    // window.getComputedStyle(evt.target);
+    if (!includeChildren && target!=evt.target) {
+      return null;
+    }
     xDown = evt.touches[0].clientX;
     yDown = evt.touches[0].clientY;
   };
 
-  function handleTouchMove(evt) {
-    if ( ! xDown || ! yDown ) {
-      return;
+  target.handleTouchMove = function (evt) {
+    if (!includeChildren && target!=evt.target) {
+      return null;
+    }
+    if ( !xDown || !yDown ) {
+      return null;
     }
 
     var xUp = evt.touches[0].clientX;
@@ -47,33 +49,36 @@ var swipe = function (target, actions) {
     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
       if ( xDiff > 0 ) {
         /* left swipe */
-        actions.swipeToLeft();
+        actions.swipeToLeft(evt, target, xDiff);
       } else {
         /* right swipe */
-        actions.swipeToRight();
+        actions.swipeToRight(evt, target, xDiff);
       }
     } else {
       if ( yDiff > 0 ) {
         /* up swipe */
-        actions.swipeToUp();
+        actions.swipeToUp(evt, target, yDiff);
       } else {
         /* down swipe */
-        actions.swipeToDown();
+        actions.swipeToDown(evt, target, yDiff);
       }
     }
     /* reset values */
     xDown = null;
     yDown = null;
   };
+
+  target.addEventListener('touchstart', target.handleTouchStart, false);
+  target.addEventListener('touchmove', target.handleTouchMove, false);
 }
 
-swipe.remove = function (target) {
+swipe.removeAll = function (target) {
   if(!target) {
     console.error(`swipe.remove(target) must have an target HTML object`);
     return null;
   }
-  target.removeEventListener('touchstart');
-  target.removeEventListener('touchmove');
+  target.removeEventListener('touchstart', target.handleTouchStart, false);
+  target.removeEventListener('touchmove', target.handleTouchMove, false);
 
 }
 

@@ -24,12 +24,12 @@ html, body {
   border-radius: 6px;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.5);
 }
 ::-webkit-scrollbar-thumb:hover {
 }
 ::-webkit-scrollbar-thumb:window-inactive {
-	background: rgba(0,0,0,0.1);
+	background: rgba(0,0,0,0.25);
 }
 
 /*::selection {
@@ -86,8 +86,11 @@ header p {
 .tag.tag-small {
   font-size: 0.9em;
   padding: 4px 5px;
-  margin: 4px 5px;
   border-radius: 6px;
+  transition: transform 0.2s linear;
+}
+.tag.tag-small:hover {
+  transform: translateY(-2px);
 }
 
 /* Filter aside style */
@@ -110,12 +113,16 @@ header p {
 #filtersTrigger:checked + #filterPanel {
   left: 0;
 }
+#filterPanel .tag {
+  cursor: pointer;
+}
 
 #filter {
   padding: 10px;
+  min-height: 67px;
   max-height: 40%;
   overflow: auto;
-  background: rgba(225,225,225,1);
+  background: white;
   box-shadow: inset 1px 2px 2px rgba(0,0,0,0.3), inset -2px -2px 4px rgba(0,0,0,0.15);
 }
 #filter .tag{
@@ -232,24 +239,20 @@ div.reference:not(:hover) > .referenceInfo{
 /* fade tags out of box */
 .referenceTags::after{
   content:'';
-  height: 25%;
-  width: 15px;
-  right: 10px;
   position: absolute;
-  background:linear-gradient( to right, transparent, #ccc 80%);
+  height: 43px; width: 15px;
+  right: 10px;
+  background: linear-gradient( to right, transparent, #ccc 80%);
   border-bottom-right-radius: 7px;
   border-top-right-radius: 7px;
   transition: opacity 0.5s ease-in-out;
 }
-.referenceTags:hover:after{
+.referenceTags:hover::after{
   opacity: 0;
 }
 /* </fade tags out of box*/
 .referenceTags .tag.tag-small {
-  transition: transform 0.2s linear;
-}
-.referenceTags .tag.tag-small:hover {
-  transform: translateY(-2px);
+  flex-shrink: 0;
 }
 .referenceTags .tag:last-child::after { /* fix "right padding" on scrollable tags list */
   content: ".";
@@ -347,7 +350,6 @@ div.reference:not(:hover) > .referenceInfo{
     flex-direction: row;
   }
   #filterPanel {
-    display: block;
     position: initial;
     background: var(--color-base);
     animation-play-state: paused;
@@ -455,52 +457,5 @@ div.reference:not(:hover) > .referenceInfo{
   }
   to {
     opacity: 1;
-  }
-}
-
-/* suport sevices not compatibles with CSS variables */
-@supports not ( color: var(--color-light)) {
-  /*::selection {
-    background: rgba(195, 217, 224, 1);
-  }*/
-  header {
-    background: rgba(64, 122, 140, 1);
-  }
-  header #projetcName {
-    font-family: "Century Gothic", Arial, Helvetica, sans-serif;
-  }
-  header p {
-    font-family: Broadway, Impact, serif;
-  }
-  .tag {
-    font-family: Consolas, "Courie New", monospace;;
-    background: rgba(31, 54, 61, 0.7);
-  }
-  .tag:hover {
-    background: rgba(31, 54, 61, 1);
-  }
-  #filterPanel {
-    background: rgba(111, 154, 168, 0.8);
-  }
-  .tagsIcon {
-    background: rgba(111, 154, 168, 1);
-  }
-  #filtersTrigger:checked + #filterPanel + label[for="filtersTrigger"] {
-    background: rgba(64, 122, 140, 1);
-  }
-  label[for="filtersTrigger"]:hover {
-    background: rgba(31, 54, 61, 1) !important;
-  }
-  #references div.reference {
-    border-bottom-color: rgba(31, 54, 61, 1);
-  }
-  #references img, #references video{
-    border-color: rgba(158, 185, 193, 1) !important;
-  }
-  .referenceInfo .tittle, .referenceInfo p {
-    font-family: Roboto, Helvetica, sans-serif;
-  }
-  .referenceTags > .fa {
-    background: rgba(111, 154, 168, 1);
   }
 }

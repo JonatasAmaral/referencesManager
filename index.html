@@ -17,11 +17,11 @@
 <body>
   <div id="modal" style="display:none">
     <i class="fa fa-close"></i>
-    <img src="content/img/imageGrid-changeDisplayedImageAsMove.gif" alt=""/>
+    <img src="" alt=""/>
   </div>
   <header>
     <div>
-      <h1 id="projetcName">Project name</h1>
+      <h1 id="projectName" title="double click or left click (hold on mobile) to edit">Project name</h1>
       <p>References Manager</p>
     </div>
   </header>
@@ -29,66 +29,17 @@
   <div id="page">
     <input type="checkbox" id="filtersTrigger" name="filtersTrigger" data-pristine onchange="pristine.remove(this)" />
     <aside id="filterPanel">
-      <div id="filter">
-        <!-- Ghost content for testing purposes -->
-        <button class="tag tag-big">image</button>
-        <button class="tag tag-big">animation</button>
-        <button class="tag tag-big">transition</button>
-        <!-- </ Ghost content for testing purposes -->
-      </div>
+      <div id="filter"></div>
     </aside>
     <label class="tagsIcon" for="filtersTrigger"><i class="fa fa-tags"></i></label>
 
     <div id="references">
-      <!-- BUG: On layout with more than one collum, references are not respecting margin of single images (those that are not in a 'div.reference' structure) above it, overlaping row above it if no reference in it's row is wrapped proper-->
-
-      <!-- Ghost content for testing purposes -->
-
-      <video class="reference" controls src="content/video/capture.mp4" data-tags="hover, image"/>
-      </video>
-      <div class="reference">
-        <img src="content/img/imageGrid-nameOnHover.gif" alt="imageGrid-nameOnHover.gif" data-tags="hover, image" />
-        <div class="referenceInfo">
-          <h3 class="title">Lorem Ipsun</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident dicta nam vitae earum sit voluptatem quae. Officiis.</p>
-          <div class="referenceTags">
-            <i class="tagsIcon fa fa-tags"></i>
-            <div class="tagsList">
-              <button class="tag tag-small">image</button>
-              <button class="tag tag-small">transition</button>
-              <button class="tag tag-small">transition</button>
-              <button class="tag tag-small">texture</button>
-              <button class="tag tag-small">transition</button>
-              <button class="tag tag-small">texture</button>
-              <button class="tag tag-small">image</button>
-              <button class="tag tag-small">texture</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="reference">
-        <img src="content/img/imageGrid-changeDisplayedImageAsMove.gif" alt="imageGrid-changeDisplayedImageAsMove.gif" data-tags="hover, image, animation" data-description="some image"/>
-        <div class="referenceInfo">
-          <h3 class="title">Lorem Ipsun</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident dicta nam vitae earum sit voluptatem quae. Officiis.</p>
-          <div class="referenceTags">
-            <i class="tagsIcon fa fa-tags"></i>
-            <div class="tagsList">
-              <button class="tag tag-small">transition</button>
-              <button class="tag tag-small">texture</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <img src="content/img/imageGrid-nameOnHover.gif" alt="imageGrid-nameOnHover.gif" data-tags="hover, image" />
-      <img src="content/img/imageGrid-changeDisplayedImageAsMove.gif" alt="imageGrid-changeDisplayedImageAsMove.gif" data-tags="hover, image, animation" data-description="some image"/>
-      <img src="content/img/imageGrid-nameOnHover2.gif" alt="imageGrid-nameOnHover2.gif" data-tags="hover, image" />
-      <img class="reference" src="content/img/header-deslocado.png" alt="header-deslocado.png" data-tags="header" />
-      <img src="content/img/imageGrid-changeDisplayedImageAsMove.gif" alt="imageGrid-changeDisplayedImageAsMove.gif" data-tags="hover, image, animation" data-description="some image" />
-      <img class="reference" src="content/img/header-deslocado_2.png" alt="header-deslocado.png" data-tags="header" />
-      <img src="content/img/imageGrid-changeDisplayedImageAsMove.gif" alt="imageGrid-changeDisplayedImageAsMove.gif" data-tags="hover, image, animation" data-description="some image" />
-      <!-- </ Ghost content for testing purposes -->
-
+      <!-- Example content
+      <video controls src="adress/of/video.mp4" data-tags="tag" /></video>
+      <img src="adress/of/an_image.png" data-tags="multi, tags, comma, separeted" />
+      <img src="adress/of/an_image.png" alt="optinal text to show if image don't load" data-tags="any ch@ract3r you_want 2 use" />
+      <img src="adress/of/animated_image.gif" data-description="some optional usefull description in here" data-tags="   extra outter spaces are trimed  , inner    spaces don't!, , empty spaces between two commas are ignored " />
+      </ Example content -->
     </div>
   </div>
 
