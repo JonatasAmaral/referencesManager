@@ -8,7 +8,7 @@ import re
 
 # global main definitions
 directory = "./css/"
-appliedFilesPrefix = "noVariables_" #"use '/' (forward slash) to indicate subdirectories, leave empty to overwrite original file"
+backupFilesPrefix = "backup_" #"use '/' (forward slash) to indicate subdirectories, leave empty to overwrite original file"
 
 # functions declaration
 # TODO: transform these functions in a class for external uses
@@ -18,13 +18,18 @@ def load_file(adress):
             return fileContent.read()
     except Exception as e:
         return ""
-def save_file(adress, content, overwrite=True):
-    prefix = appliedFilesPrefix
-    if overwrite:
-        prefix = "carai"
+def save_file(adress, content, backup=True):
+    if backup:
+        prefix = backupFilesPrefix
+        originalFileContent = load_file(adress)
+        with open(directory+prefix+adress, 'w') as backupFile:
+            backupFile.write(originalFileContent)
 
-    with open(directory+prefix+adress, 'w') as fileContent:
-        return fileContent.write(content)
+
+    print(content)
+    print(originalFileContent)
+    with open(directory+adress, 'w') as fileContent:
+        fileContent.write(content)
 
 def find_css_files(filesList=[], initialFile=""):
     #get all connected CSS files and its content
