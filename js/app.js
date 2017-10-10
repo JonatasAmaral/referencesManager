@@ -150,6 +150,65 @@ modal.onclick = function (e) {
   }
 }
 
+// filter references
+// check if one tag list contain tags from other list
+var containTag = function (imageTags, filterTags) {
+  for(let i in filterTags){
+    var tag = filterTags[i];
+    for (let j in imageTags) {
+      imageTag = imageTags[j];
+      if(imageTag == tag){
+        return true;
+      }
+    }
+  }
+  return false;
+}
+// hide references that does not have tags of the filter
+function filter(filterList) {
+  filterList = filterList || [];
+  var target = document.querySelector("#references");
+  for(var i = 0; i<target.children.length;i++){
+    var item = target.children[i];
+    item.style.display = "";
+    var itemTags = getReferenceTags(item.querySelector("[data-tags]"));
+    if (filterList.length>0 && !containTag(itemTags, filterList)){
+      item.style.display = "none"
+    }
+  }
+}
+filter(window.filterTags);
+
+for (button of document.querySelectorAll("#avaliableTags .tag")) {
+  button.addEventListener("click", function (e) {
+    if (window.filterTags.indexOf(this.innerText) == -1) {
+      window.filterTags.push(this.innerText);
+      filterTags.sort();
+      filterElement.innerHTML = "";
+      for (tag of window.filterTags) {
+        filterElement.innerHTML += `<button class="tag tag-big">${tag}</button>`;
+      }
+      updateFilterTags();
+      filter(window.filterTags);
+      enableRemoveFilterTags();
+    }
+  })
+  button.title = "click to add to filter"
+}
+var enableRemoveFilterTags = function () {
+
+  for (button of filterElement.children) {
+    button.addEventListener("click", function (e) {
+      this.outerHTML = "";
+      updateFilterTags();
+      filter(window.filterTags);
+    })
+    button.title = "click to remove from filter"
+  }
+}
+enableRemoveFilterTags();
+// </ filter references
+
 // slide aside functionality
 // BUG: side bar is being swiped when scrolling through tags list
 // TODO: make the swipe "realtime"
