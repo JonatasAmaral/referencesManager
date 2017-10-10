@@ -273,3 +273,10 @@ window.onresize = function () {
 
   closeModalButton.positionate();
 }
+swipe( modal, {
+  swipeToDown: function(e, target, swipeDistance) {
+    if ( Math.abs(swipeDistance) > 20) {
+      target.style.display = "none";
+    }
+  }
+});
