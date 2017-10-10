@@ -98,6 +98,8 @@ header p {
   display: none;
 }
 #filterPanel {
+  display: flex;
+  flex-direction: column;
   position: fixed;
   width: 80%;
   height: calc(100vh - 80px);
@@ -164,6 +166,17 @@ label[for="filtersTrigger"] .fa {
 label[for="filtersTrigger"]:hover {
   background: var(--color-darken) !important;
   color: #fff !important;
+}
+#avaliableTags {
+  flex-grow: 1;
+  overflow: auto;
+  margin: 10px 0px 0px;
+}
+#avaliableTags .tag{
+  cursor: pointer;
+}
+#avaliableTags .tag:hover{
+  box-shadow: 2px 1px 1px rgba(0, 0, 0, 0.5);
 }
 /* Page Style */
 #references {
@@ -253,6 +266,7 @@ div.reference:not(:hover) > .referenceInfo{
 /* </fade tags out of box*/
 .referenceTags .tag.tag-small {
   flex-shrink: 0;
+  transform: none;
 }
 .referenceTags .tag:last-child::after { /* fix "right padding" on scrollable tags list */
   content: ".";

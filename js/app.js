@@ -20,6 +20,17 @@ function addMultiEventListeners(target, events, func) {
   }
 }
 
+var filterElement = document.querySelector("#filter");
+window.filterTags = [];
+
+// get all filter tags
+function updateFilterTags() {
+  window.filterTags = [];
+  for (button of filterElement.children) {
+    window.filterTags.push(button.innerText);
+  }
+}
+updateFilterTags();
 // get each image's tag
 function getReferenceTags(referenceElement, wrappedIn) {
   if(referenceElement){
@@ -81,6 +92,24 @@ looseImages.forEach(function (img) {
   }
   warpReference(img);
 })
+// get all avaiables tags in app
+var taggedReferences = document.querySelectorAll("[data-tags]");
+var allTags = [];
+for(var i = 0; i < taggedReferences.length; i++) {
+  var tags = getReferenceTags(taggedReferences[i]);
+  for( tag of tags){
+    if (allTags.indexOf(tag)==-1) {
+      allTags.push(tag);
+    }
+  }
+}
+allTags.sort()
+
+// list all avaiables tags bellow filter
+var avaiableTagsList = document.getElementById("avaliableTags")
+for(let i in allTags) {
+  avaiableTagsList.innerHTML += `<button class="tag tag-small" title="click to add tag to filter">${allTags[i]}</button>`
+}
 
 // open clicked image on modal
 var modal = document.querySelector("#modal")
