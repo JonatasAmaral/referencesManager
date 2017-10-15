@@ -92,7 +92,7 @@ looseImages.forEach(function (img) {
   }
   warpReference(img);
 })
-// get all avaiables tags in app
+// get all availables tags in app
 var taggedReferences = document.querySelectorAll("[data-tags]");
 var allTags = [];
 for(var i = 0; i < taggedReferences.length; i++) {
@@ -105,10 +105,10 @@ for(var i = 0; i < taggedReferences.length; i++) {
 }
 allTags.sort()
 
-// list all avaiables tags bellow filter
-var avaiableTagsList = document.getElementById("avaliableTags")
+// list all availables tags bellow filter
+var availableTagsList = document.getElementById("avaliableTags")
 for(let i in allTags) {
-  avaiableTagsList.innerHTML += `<button class="tag tag-small" title="click to add tag to filter">${allTags[i]}</button>`
+  availableTagsList.innerHTML += `<button class="tag tag-small" title="click to add tag to filter">${allTags[i]}</button>`
 }
 
 // open clicked image on modal
@@ -117,6 +117,23 @@ var modalImg = modal.querySelector("img")
 var closeModalButton = modal.querySelector("i")
 var images = document.querySelectorAll("#references img")
 
+closeModalButton.positionate = function () {
+
+  /* align close button clossest possible (with some offset) to image's right-top corner */
+  if (modal.style.display == "none") {
+    return null
+  }
+  closeModalButton.style.top =  (modalImg.offsetTop - closeModalButton.clientHeight) - closeModalButton.offsetFromImg + "px";
+  closeModalButton.style.right =  (modalImg.offsetLeft - closeModalButton.clientWidth) - closeModalButton.offsetFromImg + "px"
+
+  if(parseInt(closeModalButton.style.top) < 20){
+    closeModalButton.style.top = "20px";
+  }
+  if(parseInt(closeModalButton.style.right) < 20){
+    closeModalButton.style.right = "20px";
+  }
+  /* </ align close button */
+}
 for(let i in images) {
   images[i].ondblclick = function(e) {
     var img = e.target;
@@ -127,20 +144,6 @@ for(let i in images) {
     modal.style.display = "";
 
     closeModalButton.offsetFromImg = 10;
-    closeModalButton.positionate = function () {
-
-      /* align close button clossest possible (with some offset) to image's right-top corner */
-      closeModalButton.style.top =  (modalImg.offsetTop - closeModalButton.clientHeight) - closeModalButton.offsetFromImg + "px";
-      closeModalButton.style.right =  (modalImg.offsetLeft - closeModalButton.clientWidth) - closeModalButton.offsetFromImg + "px"
-
-      if(parseInt(closeModalButton.style.top) < 20){
-        closeModalButton.style.top = "20px";
-      }
-      if(parseInt(closeModalButton.style.right) < 20){
-        closeModalButton.style.right = "20px";
-      }
-      /* </ align close button */
-    }
     closeModalButton.positionate();
   }
 }
