@@ -49,7 +49,7 @@ They are separated by ``,`` [comma] character, and can have any character you wa
 
 The order that you place the references, is the order that will the displayed in app. Future versions should count with some reorder functions.
 
-![add references](README/addReferences.gif)
+![add references](https://imgur.com/Q4h66Pf)
 
 <br />
 
@@ -61,11 +61,11 @@ The images/videos you added are displayed in the canvas. Putting the mouse over 
 In the side panel, the gray box display the tags being used to filter the references, only images/videos that have at least one of these tags are displayed in the canvas (if empty, all content is displayed). Below there's all available tags (those used by all the references you added), sorted alphabetically  
 Click in one of "available tags" to add it to filter, ctrl+click to add JUST that tag (remove the others). Click one in the filter box to remove it.  
 
-![using the app](README/useApp.gif)
+![using the app](https://imgur.com/z7CKkWY)
 
-In small screens, like mobile (see [here](#use-remotely) how to use in mobile), this panel is hidden. To show it, just click in the floating button in the left-bottom corner.
+In small screens, like mobile (see [here](/#use-remotely) how to use in mobile), this panel is hidden. To show it, just click in the floating button in the left-bottom corner.
 
-![using the app](README/smallScreen.gif)
+![on small screens](https://imgur.com/TuVXuax)
 
 <br />
 
@@ -88,13 +88,13 @@ Fonts use a bit different syntax:
 `Arial, Helvetica, sans-serif};`. That is a list of fonts. The browser tries to use the first font, if it is not installed in the computer, it tries de second, and so on. The final item is a "back-up" state, that says "use any available _sans-serif_ font".
 If the font you want, has space in it's name, it should be inside `" "` characters [quote-marks].
 
-![change colors and fonts](README/changeColors.gif)
+![change colors and fonts](https://imgur.com/rQZR86m)
 
 ###### In case your browser doesn't support CSS variables
 In case you use a old browser, that doesn't support _CSS variables_, you may notice some colors gone, and wrong fonts. To solve that, in app's root folder there is a python script, that will "apply" those variables.  
 To run it, make sure you have [python]("www.python.org") installed, then run the code by double clicking it. The script will also create a `backup_style.css` in the same folder of the original file, in case you need it. Than you will be able to deleted the actual one, and remove the _"backup"_ from it's name, to return things to original state.
 
-![apply css variables](README/applyCssVariables.gif)
+![apply css variables](https://imgur.com/FbpaGbC)
 
 #### Use remotely
 You can always upload the app to a host, although the app objective is to be a light **_OFFLINE_** resource.
