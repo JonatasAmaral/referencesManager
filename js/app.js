@@ -218,6 +218,9 @@ filter(window.filterTags);
 
 for (button of document.querySelectorAll("#avaliableTags .tag")) {
   button.addEventListener("click", function (e) {
+    if (e.ctrlKey) {
+      window.filterTags = [];
+    }
     if (window.filterTags.indexOf(this.innerText) == -1) {
       window.filterTags.push(this.innerText);
       filterTags.sort();
@@ -230,7 +233,8 @@ for (button of document.querySelectorAll("#avaliableTags .tag")) {
       enableRemoveFilterTags();
     }
   })
-  button.title = "click to add to filter"
+  button.title = `click to add to filter
+ctrl+click to also remove others`
 }
 var enableRemoveFilterTags = function () {
 
