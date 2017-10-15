@@ -63,7 +63,7 @@ Click in one of "available tags" to add it to filter, ctrl+click to add JUST tha
 
 ![using the app](README/useApp.gif)
 
-In small screens, like mobile (see [here](/#use-remotely) how to use in mobile), this panel is hidden. To show it, just click in the floating button in the left-bottom corner.
+In small screens, like mobile (see [here](#use-remotely) how to use in mobile), this panel is hidden. To show it, just click in the floating button in the left-bottom corner.
 
 ![using the app](README/smallScreen.gif)
 
